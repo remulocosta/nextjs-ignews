@@ -1,6 +1,7 @@
 /**
  * IMPORTS
  */
+import Head from 'next/head';
 import React from 'react';
 
 
@@ -16,7 +17,14 @@ import React from 'react';
 function Home (): JSX.Element
 {
   // return home component
-  return <main>ig.News</main>;
+  return (
+    <>
+      <Head>
+        <title>Início | ig.news</title>
+      </Head>
+      <main>ig.News</main>
+    </>
+  );
 }
 
 
