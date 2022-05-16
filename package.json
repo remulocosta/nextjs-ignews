@@ -10,7 +10,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npm-run-all test:*",
+    "test:tsc": "tsc",
+    "test:jest": "jest -u",
+    "test:eslint": "eslint --ext .ts,.tsx src/"
   },
   "dependencies": {
     "next": "12.1.6",
