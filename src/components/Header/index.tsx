@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import styles from 'src/components/Header/styles.module.scss';
+import {SignInButton} from 'src/components/SignInButton';
 
 
 /**
@@ -25,6 +26,8 @@ function Header (): JSX.Element
           <a className={styles.active} href="#">Home</a>
           <a href="#">Posts</a>
         </nav>
+
+        <SignInButton />
       </div>
     </header>
   );
