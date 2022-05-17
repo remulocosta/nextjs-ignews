@@ -10,6 +10,34 @@ import {Header} from 'src/components/Header';
 /**
  * CODE
  */
+
+// mocked router
+jest.mock('next/router', () =>
+{
+  return {
+    useRouter (): unknown
+    {
+      return {
+        asPath: '/',
+      };
+    },
+  };
+});
+
+// mocked useSession
+jest.mock('next-auth/react', () =>
+{
+  return {
+    useSession (): unknown
+    {
+      return {
+        data: null,
+        loading: 'loading',
+      };
+    },
+  };
+});
+
 describe('A Header component', () =>
 {
   it('should render the posts menu on header', () =>

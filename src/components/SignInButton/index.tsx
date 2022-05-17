@@ -5,6 +5,9 @@ import React from 'react';
 import {FaGithub} from 'react-icons/fa';
 import {FiX} from 'react-icons/fi';
 import styles from 'src/components/SignInButton/styles.module.scss';
+import {signIn} from 'next-auth/react';
+import {signOut} from 'next-auth/react';
+import {useSession} from 'next-auth/react';
 
 
 /**
@@ -18,19 +21,20 @@ import styles from 'src/components/SignInButton/styles.module.scss';
  */
 function SignInButton (): JSX.Element
 {
-  // get user is logged in
-  const isUserLoggedIn = true;
+  // get user session
+  const {data: session} = useSession();
 
-  // user logged: return logout button or return sign in button
-  return isUserLoggedIn === true ? (
+  // user session exists: return logout button or return sign in button
+  return session !== null ? (
 
     // render logout button
     <button
       className={styles.signInButton}
       type='button'
+      onClick={(): Promise<void> => signOut()}
     >
       <FaGithub color="#04d361" />
-      Remulo Costa
+      {session?.user?.name || 'Sem usuário'}
       <FiX color='#737380' className={styles.closeIcon} />
     </button>
   ) : (
@@ -39,6 +43,7 @@ function SignInButton (): JSX.Element
     <button
       className={styles.signInButton}
       type='button'
+      onClick={(): Promise<void> => signIn('github')}
     >
       <FaGithub color="#eba417" />
       Sign in with Github
